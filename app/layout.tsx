@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-sans",
-  display: "swap",
-});
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-display",
   display: "swap",
 });
 
@@ -24,9 +17,9 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const title = "Mathgram — De conocimiento a sistemas";
+const title = "Mathgram | De conocimiento a sistemas";
 const description =
-  "Mathgram es la capa de coherencia entre SaaS, inteligencia artificial y contenido educativo. Estructuramos lo que tu empresa ya sabe para que escale sin más herramientas.";
+  "Mathgram une software, inteligencia artificial y contenido educativo para convertir conocimiento en sistemas claros, modernos y escalables.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mathgram-rho.vercel.app"),
@@ -37,8 +30,8 @@ export const metadata: Metadata = {
     "SaaS",
     "inteligencia artificial",
     "contenido educativo",
-    "sistemas operativos de conocimiento",
-    "transformación organizacional",
+    "software educativo",
+    "sistemas de conocimiento",
   ],
   openGraph: {
     title,
@@ -65,9 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body
-        className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
-      >
+      <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
         {children}
       </body>
     </html>

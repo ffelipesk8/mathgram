@@ -1,30 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* Paper palette — warm bone, editorial */
-  --paper: #f4f0e6;
-  --paper-soft: #fbf8f1;
-  --paper-deep: #ece6d6;
+  /* Surface */
+  --paper: #ffffff;
+  --surface: #f5f5f7;
+  --surface-2: #fafafa;
+  --surface-deep: #1d1d1f;
+  --surface-darker: #000000;
 
-  /* Ink — warm near-black */
-  --ink: #14110d;
-  --ink-strong: #050402;
-  --ink-muted: rgba(20, 17, 13, 0.62);
-  --ink-faint: rgba(20, 17, 13, 0.42);
-  --ink-whisper: rgba(20, 17, 13, 0.24);
+  /* Ink */
+  --ink: #1d1d1f;
+  --ink-strong: #000000;
+  --ink-muted: #6e6e73;
+  --ink-subtle: #86868b;
+  --ink-faint: rgba(29, 29, 31, 0.42);
 
-  /* Rules / borders */
-  --rule: rgba(20, 17, 13, 0.10);
-  --rule-strong: rgba(20, 17, 13, 0.18);
+  /* Inverse (used in dark sections) */
+  --ink-on-dark: #f5f5f7;
+  --ink-on-dark-muted: rgba(245, 245, 247, 0.72);
+  --ink-on-dark-faint: rgba(245, 245, 247, 0.5);
 
-  /* Accents — used sparingly */
-  --accent: #14110d;            /* primary accent IS the ink */
-  --accent-warm: #b08642;       /* refined ochre, only for kicker dots & highlights */
-  --accent-warm-soft: rgba(176, 134, 66, 0.14);
+  /* Rules */
+  --rule: rgba(29, 29, 31, 0.08);
+  --rule-strong: rgba(29, 29, 31, 0.16);
+  --rule-on-dark: rgba(245, 245, 247, 0.14);
+
+  /* Accent (used minimally) */
+  --accent: #0066cc;
+  --accent-on-dark: #2997ff;
+
+  /* Card radius */
+  --radius-card: 22px;
+  --radius-card-lg: 28px;
 }
 
 * {
@@ -41,13 +51,12 @@ html {
 body {
   min-height: 100dvh;
   font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv11";
   color: var(--ink);
   text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
 }
 
-a,
-button {
+a, button {
   transition:
     color 200ms cubic-bezier(0.22, 1, 0.36, 1),
     background-color 200ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -63,211 +72,191 @@ button {
 
 @theme inline {
   --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
   --font-mono: var(--font-mono);
 
   --color-paper: var(--paper);
-  --color-paper-soft: var(--paper-soft);
-  --color-paper-deep: var(--paper-deep);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-deep: var(--surface-deep);
   --color-ink: var(--ink);
   --color-ink-strong: var(--ink-strong);
   --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
   --color-ink-faint: var(--ink-faint);
-  --color-ink-whisper: var(--ink-whisper);
   --color-rule: var(--rule);
   --color-rule-strong: var(--rule-strong);
-  --color-accent-warm: var(--accent-warm);
+  --color-accent: var(--accent);
 }
 
-/* Layout primitives */
+/* Containers */
 @utility container-shell {
   margin-inline: auto;
-  width: min(100% - 2.5rem, 1240px);
+  width: min(100% - 2.5rem, 1280px);
 }
 
 @utility container-narrow {
   margin-inline: auto;
-  width: min(100% - 2.5rem, 920px);
+  width: min(100% - 2.5rem, 980px);
 }
 
 @utility section-space {
-  padding-block: clamp(5rem, 10vw, 10rem);
+  padding-block: clamp(4rem, 8vw, 7rem);
 }
 
-/* Typography */
-@utility eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
-@utility eyebrow-dot {
-  display: inline-block;
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 9999px;
-  background: var(--accent-warm);
-}
-
-@utility chapter-num {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  color: var(--ink-faint);
+/* Typography — weight-driven, sans only */
+@utility display-hero {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(3rem, 8.4vw, 7.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  color: var(--ink);
 }
 
 @utility display-xl {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(3.4rem, 8vw, 8.4rem);
-  line-height: 0.95;
-  letter-spacing: -0.025em;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 5.4vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.038em;
   color: var(--ink);
 }
 
 @utility display-lg {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(2.6rem, 5.4vw, 5.4rem);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 3.8vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.032em;
   color: var(--ink);
 }
 
 @utility display-md {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(2rem, 3.6vw, 3.4rem);
-  line-height: 1.04;
-  letter-spacing: -0.018em;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  line-height: 1.18;
+  letter-spacing: -0.022em;
   color: var(--ink);
 }
 
 @utility display-sm {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
-  line-height: 1.16;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+  line-height: 1.32;
   letter-spacing: -0.012em;
   color: var(--ink);
 }
 
 @utility lead {
-  font-size: clamp(1.05rem, 1.4vw, 1.22rem);
-  line-height: 1.6;
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+  line-height: 1.55;
   color: var(--ink-muted);
   font-weight: 400;
+  letter-spacing: -0.005em;
 }
 
 @utility body-prose {
-  font-size: 1.025rem;
-  line-height: 1.72;
+  font-size: 1.0625rem;
+  line-height: 1.6;
   color: var(--ink-muted);
 }
 
-/* Decorative grid (mathematical) */
-.paper-grid {
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--accent);
+}
+
+@utility eyebrow-mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+}
+
+/* Cards (Apple style) */
+@utility card-surface {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+@utility card-surface-lg {
+  background: var(--surface);
+  border-radius: var(--radius-card-lg);
+  overflow: hidden;
+}
+
+@utility card-dark {
+  background: var(--surface-deep);
+  border-radius: var(--radius-card-lg);
+  overflow: hidden;
+  color: var(--ink-on-dark);
+}
+
+/* Buttons */
+@utility btn-pill-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  height: 2.85rem;
+  padding-inline: 1.4rem;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  border-radius: 9999px;
+}
+
+@utility btn-pill-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  height: 2.85rem;
+  padding-inline: 1.4rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  border-radius: 9999px;
+}
+
+@utility text-link {
+  color: var(--accent);
+  font-size: 0.98rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Subtle grid for visual sections */
+.grid-bg {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background-image:
     linear-gradient(var(--rule) 1px, transparent 1px),
     linear-gradient(90deg, var(--rule) 1px, transparent 1px);
-  background-size: 88px 88px;
-  background-position: -1px -1px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 0%, transparent 90%);
-  opacity: 0.55;
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black, transparent 80%);
+  opacity: 0.6;
 }
 
-.paper-grid--dense {
-  background-size: 44px 44px;
-}
-
+/* Hairline dividers */
 .hairline {
   height: 1px;
   background: var(--rule);
   width: 100%;
-}
-
-.hairline-strong {
-  height: 1px;
-  background: var(--rule-strong);
-  width: 100%;
-}
-
-.italic-serif {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-}
-
-/* Buttons */
-@utility btn-ink {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  height: 2.85rem;
-  padding-inline: 1.35rem;
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  border-radius: 9999px;
-}
-
-@utility btn-ink-hover {
-  background: var(--ink-strong);
-  transform: translateY(-1px);
-}
-
-@utility btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  height: 2.85rem;
-  padding-inline: 1.35rem;
-  border: 1px solid var(--rule-strong);
-  color: var(--ink);
-  font-size: 0.9rem;
-  font-weight: 500;
-  background: transparent;
-  border-radius: 9999px;
-}
-
-@utility btn-ghost-hover {
-  border-color: var(--ink);
-  background: var(--paper-soft);
-}
-
-/* Marquee divider */
-.marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 5rem;
-  animation: marquee 38s linear infinite;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-  }
 }

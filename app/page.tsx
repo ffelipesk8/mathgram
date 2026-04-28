@@ -1,6 +1,8 @@
 import { HeroSection } from "@/components/sections/hero-section";
 import {
   AudienceSection,
+  DifferentiationSection,
+  EducationSection,
   FinalCtaSection,
   ManifestoSection,
   MethodSection,
@@ -19,8 +21,10 @@ export default function HomePage() {
         <HeroSection />
         <ManifestoSection />
         <ServicesSection />
+        <EducationSection />
         <MethodSection />
         <VisionSection />
+        <DifferentiationSection />
         <AudienceSection />
         <TeamSection />
         <FinalCtaSection />

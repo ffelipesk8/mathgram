@@ -15,7 +15,7 @@ export function SiteNavbar() {
   const reduce = useReducedMotion();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -43,18 +43,15 @@ export function SiteNavbar() {
   }, []);
 
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (open) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
 
   const navBgClass = scrolled
-    ? "bg-[rgb(244_240_230_/_0.86)] backdrop-blur-xl"
+    ? "bg-[rgb(255_255_255_/_0.78)] backdrop-blur-2xl"
     : "bg-[var(--paper)]";
 
   return (
@@ -65,22 +62,17 @@ export function SiteNavbar() {
           navBgClass
         }
       >
-        <div className="container-shell flex h-[4.4rem] items-center justify-between gap-8 md:h-[5rem]">
-          {/* Logo lockup */}
-          <a href="#inicio" className="group flex items-center gap-2.5">
-            <span
-              aria-hidden
-              className="font-display italic text-[clamp(2rem,3vw,2.4rem)] leading-none tracking-[-0.04em] text-[var(--ink)]"
-            >
-              M
-            </span>
-            <span className="font-display text-[clamp(1.15rem,1.55vw,1.3rem)] leading-none tracking-[-0.018em] text-[var(--ink)]">
-              Mathgram
-            </span>
+        <div className="container-shell flex h-12 items-center justify-between gap-8 md:h-14">
+          {/* Wordmark */}
+          <a
+            href="#inicio"
+            className="text-[1.05rem] font-bold tracking-[-0.022em] text-[var(--ink)] transition hover:text-[var(--ink-strong)]"
+          >
+            {brand.name}
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden flex-1 items-center justify-center gap-8 md:flex">
             {navItems.map((item) => {
               const id = item.href.replace("#", "");
               const isActive = activeId === id;
@@ -88,25 +80,14 @@ export function SiteNavbar() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="group relative px-3 py-2 text-[0.92rem]"
+                  className={
+                    "text-[0.84rem] font-medium tracking-[-0.005em] transition " +
+                    (isActive
+                      ? "text-[var(--ink)]"
+                      : "text-[var(--ink-muted)] hover:text-[var(--ink)]")
+                  }
                 >
-                  <span
-                    className={
-                      "relative transition " +
-                      (isActive
-                        ? "text-[var(--ink)]"
-                        : "text-[var(--ink-muted)] group-hover:text-[var(--ink)]")
-                    }
-                  >
-                    {item.label}
-                    <span
-                      aria-hidden
-                      className={
-                        "absolute -bottom-1 left-0 h-px bg-[var(--ink)] transition-all duration-500 ease-out " +
-                        (isActive ? "w-full" : "w-0 group-hover:w-full")
-                      }
-                    />
-                  </span>
+                  {item.label}
                 </a>
               );
             })}
@@ -114,13 +95,18 @@ export function SiteNavbar() {
 
           {/* Right cluster */}
           <div className="flex items-center gap-2">
-            <NavCta />
+            <a
+              href="#contacto"
+              className="hidden h-9 items-center gap-1.5 rounded-full bg-[var(--ink)] px-4 text-[0.84rem] font-medium text-[var(--paper)] transition hover:bg-[var(--ink-strong)] sm:inline-flex"
+            >
+              Agendar demo
+            </a>
             <button
               type="button"
               aria-label={open ? "Cerrar menu" : "Abrir menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="grid h-11 w-11 place-items-center border border-[var(--rule-strong)] text-[var(--ink)] transition hover:border-[var(--ink)] md:hidden"
+              className="grid h-10 w-10 place-items-center rounded-full text-[var(--ink)] transition hover:bg-[var(--surface)] md:hidden"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {open ? (
@@ -129,7 +115,7 @@ export function SiteNavbar() {
                     initial={reduce ? false : { rotate: -90, opacity: 0 }}
                     animate={reduce ? undefined : { rotate: 0, opacity: 1 }}
                     exit={reduce ? undefined : { rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.25, ease }}
+                    transition={{ duration: 0.2, ease }}
                   >
                     <X className="h-4 w-4" />
                   </motion.span>
@@ -139,7 +125,7 @@ export function SiteNavbar() {
                     initial={reduce ? false : { rotate: 90, opacity: 0 }}
                     animate={reduce ? undefined : { rotate: 0, opacity: 1 }}
                     exit={reduce ? undefined : { rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.25, ease }}
+                    transition={{ duration: 0.2, ease }}
                   >
                     <Menu className="h-4 w-4" />
                   </motion.span>
@@ -158,57 +144,44 @@ export function SiteNavbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease }}
-            className="fixed inset-x-0 top-[4.4rem] z-40 h-[calc(100dvh-4.4rem)] overflow-y-auto bg-[var(--paper)] md:hidden"
+            transition={{ duration: 0.2, ease }}
+            className="fixed inset-x-0 top-12 z-40 h-[calc(100dvh-3rem)] overflow-y-auto bg-[var(--paper)] md:hidden"
           >
-            <div className="container-shell flex h-full flex-col justify-between py-10">
+            <div className="container-shell flex h-full flex-col justify-between py-8">
               <nav className="flex flex-col">
                 {navItems.map((item, i) => (
                   <motion.a
                     key={item.href}
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    initial={reduce ? false : { opacity: 0, y: 16 }}
+                    initial={reduce ? false : { opacity: 0, y: 12 }}
                     animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, ease, delay: i * 0.05 }}
-                    className="group flex items-baseline justify-between border-b border-[var(--rule)] py-5"
+                    transition={{ duration: 0.3, ease, delay: i * 0.04 }}
+                    className="group flex items-center justify-between border-b border-[var(--rule)] py-5"
                   >
-                    <span className="font-display text-[2.4rem] leading-none tracking-[-0.02em] text-[var(--ink)]">
+                    <span className="text-[1.8rem] font-semibold tracking-[-0.024em] text-[var(--ink)]">
                       {item.label}
                     </span>
-                    <ArrowUpRight className="h-5 w-5 text-[var(--ink-faint)] transition group-hover:text-[var(--ink)]" />
+                    <ArrowUpRight className="h-5 w-5 text-[var(--ink-subtle)] transition group-hover:text-[var(--ink)]" />
                   </motion.a>
                 ))}
               </nav>
 
-              <div className="mt-10 space-y-6">
-                <NavCta full />
-                <p className="text-[0.92rem] text-[var(--ink-muted)]">
-                  {brand.email}
-                </p>
+              <div className="mt-8 space-y-4">
+                <a
+                  href="#contacto"
+                  onClick={() => setOpen(false)}
+                  className="flex h-12 w-full items-center justify-between rounded-full bg-[var(--ink)] px-6 text-[0.95rem] font-medium text-[var(--paper)]"
+                >
+                  Agendar demo
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+                <p className="text-[0.9rem] text-[var(--ink-muted)]">{brand.email}</p>
               </div>
             </div>
           </motion.div>
         ) : null}
       </AnimatePresence>
     </header>
-  );
-}
-
-function NavCta({ full = false }: { full?: boolean }) {
-  const base =
-    "group relative inline-flex h-11 items-center gap-3 overflow-hidden rounded-full bg-[var(--ink)] pl-5 pr-1.5 text-[0.9rem] font-medium text-[var(--paper)] transition hover:bg-[var(--ink-strong)]";
-  const layout = full ? "w-full justify-between" : "hidden sm:inline-flex";
-
-  return (
-    <a href="#contacto" className={base + " " + layout}>
-      <span>Agendar demo</span>
-      <span
-        aria-hidden
-        className="grid h-8 w-8 place-items-center rounded-full bg-[var(--paper)] text-[var(--ink)] transition-transform duration-500 ease-out group-hover:rotate-45"
-      >
-        <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
-      </span>
-    </a>
   );
 }
