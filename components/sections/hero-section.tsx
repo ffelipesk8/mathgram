@@ -1,200 +1,179 @@
-import { ArrowRight, ChartNoAxesCombined, Network, Sparkles } from "lucide-react";
+"use client";
+
+import { ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { ButtonLink } from "@/components/site/button-link";
-import { Reveal } from "@/components/site/reveal";
-import { SectionLabel } from "@/components/site/section-label";
+import { brand, heroCopy } from "@/lib/site-data";
 
-function HeroArchitecture() {
-  return (
-    <div className="relative mx-auto w-full max-w-[34rem]">
-      <div className="absolute inset-x-10 top-14 h-px bg-gradient-to-r from-transparent via-white/[0.14] to-transparent" />
-      <div className="absolute inset-x-20 bottom-16 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/50 to-transparent" />
-
-      <div className="glass-panel relative overflow-hidden rounded-[2rem] p-6 md:p-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(158,197,255,0.14),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(215,179,127,0.1),transparent_22%)]" />
-        <div className="relative">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/[0.42]">
-                Mathgram System Map
-              </p>
-              <p className="mt-3 display-kicker text-2xl text-white md:text-[2rem]">
-                De conocimiento
-                <span className="block text-white/[0.48]">a estructura operativa.</span>
-              </p>
-            </div>
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--color-border-strong)] bg-[var(--color-accent-soft)]">
-              <Sparkles className="h-5 w-5 text-[var(--color-accent)]" />
-            </div>
-          </div>
-
-          <div className="mt-10 grid gap-4">
-            <div className="grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
-              <div className="rounded-[1.7rem] border border-white/[0.08] bg-black/10 p-5">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/[0.06]">
-                    <Network className="h-4 w-4 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/[0.42]">
-                      Input
-                    </p>
-                    <p className="mt-1 text-lg font-semibold text-white">
-                      Conocimiento disperso
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-6 space-y-3">
-                  <div className="h-2 rounded-full bg-white/[0.08]" />
-                  <div className="h-2 w-5/6 rounded-full bg-white/[0.16]" />
-                  <div className="h-2 w-2/3 rounded-full bg-white/[0.08]" />
-                </div>
-              </div>
-              <div className="rounded-[1.7rem] border border-white/[0.08] bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5">
-                <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/[0.42]">
-                  Outcome
-                </p>
-                <div className="mt-5 grid grid-cols-2 gap-3">
-                  <div className="rounded-2xl bg-white/[0.08] p-4">
-                    <p className="text-sm text-white/[0.7]">Procesos</p>
-                  </div>
-                  <div className="rounded-2xl bg-[var(--color-accent-soft)] p-4">
-                    <p className="text-sm text-white">Aprendizaje</p>
-                  </div>
-                  <div className="rounded-2xl bg-white/[0.06] p-4">
-                    <p className="text-sm text-white/[0.7]">Sistemas</p>
-                  </div>
-                  <div className="rounded-2xl bg-white/[0.12] p-4">
-                    <p className="text-sm text-white">Escala</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-[0.88fr_1.12fr]">
-              <div className="rounded-[1.7rem] border border-white/[0.08] bg-white/[0.03] p-5">
-                <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/[0.42]">
-                  Layer
-                </p>
-                <div className="mt-5 space-y-3">
-                  {["SaaS", "IA aplicada", "Contenido educativo"].map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-center justify-between rounded-2xl border border-white/[0.06] bg-white/[0.03] px-4 py-3"
-                    >
-                      <span className="text-sm text-white/[0.76]">{item}</span>
-                      <span className="h-2.5 w-2.5 rounded-full bg-[var(--color-accent)]" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="rounded-[1.7rem] border border-[var(--color-border-strong)] bg-[linear-gradient(180deg,rgba(158,197,255,0.12),rgba(158,197,255,0.03))] p-5">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/14">
-                    <ChartNoAxesCombined className="h-4 w-4 text-[var(--color-accent)]" />
-                  </div>
-                  <div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/[0.42]">
-                      Result
-                    </p>
-                    <p className="mt-1 text-lg font-semibold text-white">
-                      Claridad que sí se puede operar
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-6 grid grid-cols-3 gap-3">
-                  <div className="rounded-2xl bg-black/10 p-4">
-                    <p className="text-2xl font-semibold text-white">01</p>
-                    <p className="mt-2 text-sm text-white/[0.62]">Diagnóstico</p>
-                  </div>
-                  <div className="rounded-2xl bg-black/10 p-4">
-                    <p className="text-2xl font-semibold text-white">02</p>
-                    <p className="mt-2 text-sm text-white/[0.62]">Conexión</p>
-                  </div>
-                  <div className="rounded-2xl bg-black/10 p-4">
-                    <p className="text-2xl font-semibold text-white">03</p>
-                    <p className="mt-2 text-sm text-white/[0.62]">Escala</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function HeroSection() {
+  const reduce = useReducedMotion();
+
+  const titleAnim = (i: number) => ({
+    initial: reduce ? false : { opacity: 0, y: 36 },
+    animate: reduce ? undefined : { opacity: 1, y: 0 },
+    transition: { duration: 0.85, ease, delay: 0.1 + i * 0.08 },
+  });
+
   return (
-    <section id="inicio" className="relative overflow-hidden pt-8">
-      <div className="mesh-lines" />
-      <div className="noise-overlay" />
-      <div className="container-shell relative section-space">
-        <Reveal className="mb-10">
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-3">
-            <div className="flex items-center gap-3">
-              <SectionLabel>Mathgram</SectionLabel>
-              <p className="text-sm text-white/[0.56]">
-                SaaS, inteligencia artificial y contenido educativo para empresas que necesitan estructura.
-              </p>
+    <section
+      id="inicio"
+      className="relative overflow-hidden bg-[var(--paper)] pt-10"
+    >
+      <div aria-hidden className="paper-grid" />
+
+      <div className="container-shell relative pt-12 pb-24 md:pt-20 md:pb-32">
+        {/* Editorial masthead */}
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 8 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease }}
+          className="flex flex-wrap items-center justify-between gap-3 border-y border-[var(--rule)] py-3 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[var(--ink-faint)]"
+        >
+          <span className="flex items-center gap-3">
+            <span className="block h-1.5 w-1.5 rounded-full bg-[var(--accent-warm)]" />
+            {heroCopy.eyebrow}
+          </span>
+          <span className="hidden md:block">Edición MMXXVI</span>
+          <span>{brand.tagline}</span>
+        </motion.div>
+
+        {/* Title */}
+        <h1 className="mt-12 max-w-[24ch] font-display text-[clamp(3rem,8.6vw,8.8rem)] font-normal leading-[0.95] tracking-[-0.025em] text-[var(--ink)] md:mt-20">
+          {heroCopy.titleLines.map((line, i) => (
+            <motion.span
+              key={line}
+              {...titleAnim(i)}
+              className={`block ${i === heroCopy.titleItalicIndex ? "italic-serif text-[var(--ink-strong)]" : ""}`}
+            >
+              {line}
+            </motion.span>
+          ))}
+        </h1>
+
+        {/* Lead + CTAs */}
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+          <motion.p
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease, delay: 0.5 }}
+            className="lead max-w-[52ch] text-[var(--ink-muted)]"
+          >
+            {heroCopy.lead}
+          </motion.p>
+
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease, delay: 0.6 }}
+            className="flex flex-wrap items-center gap-3 lg:justify-end"
+          >
+            <ButtonLink href={heroCopy.primaryCta.href}>
+              {heroCopy.primaryCta.label}
+            </ButtonLink>
+            <ButtonLink href={heroCopy.secondaryCta.href} variant="ghost">
+              {heroCopy.secondaryCta.label}
+              <ArrowUpRight className="h-4 w-4" />
+            </ButtonLink>
+          </motion.div>
+        </div>
+
+        {/* Editorial diagram below hero */}
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease, delay: 0.75 }}
+          className="mt-20 md:mt-28"
+        >
+          <SystemDiagram />
+        </motion.div>
+
+        {/* Meta */}
+        <div className="mt-20 grid gap-px border-t border-[var(--rule)] md:grid-cols-3">
+          {heroCopy.metaItems.map((item, idx) => (
+            <div
+              key={item.label}
+              className={`flex items-baseline gap-5 py-6 ${
+                idx > 0 ? "md:border-l md:border-[var(--rule)] md:pl-8" : ""
+              }`}
+            >
+              <span className="font-mono text-[0.78rem] tracking-[0.2em] text-[var(--ink-faint)]">
+                {item.num}
+              </span>
+              <span className="font-display text-[clamp(1.6rem,2.6vw,2.4rem)] leading-none tracking-[-0.012em] text-[var(--ink)]">
+                {item.label}
+              </span>
             </div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/[0.36]">
-              De conocimiento a sistemas
-            </p>
-          </div>
-        </Reveal>
-
-        <div className="grid gap-16 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
-          <div>
-            <Reveal>
-              <h1 className="display-kicker max-w-5xl text-[clamp(3.4rem,7.2vw,7rem)] leading-[0.9] font-semibold text-white">
-                Tu empresa no necesita m&aacute;s herramientas.
-                <span className="mt-2 block text-[#c6c2b8]">
-                  Necesita una l&oacute;gica com&uacute;n para lo que ya sabe.
-                </span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.05} className="mt-8">
-              <p className="max-w-2xl text-[1.15rem] leading-9 text-white/[0.68] md:text-[1.28rem]">
-                Mathgram convierte conocimiento disperso en sistemas claros,
-                adoptables y escalables. Combinamos producto, IA aplicada y
-                contenido educativo para que la operaci&oacute;n deje de depender
-                de la intuici&oacute;n.
-              </p>
-            </Reveal>
-            <Reveal delay={0.1} className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <ButtonLink href="#contacto">Agendar demo</ButtonLink>
-              <ButtonLink href="#como-funciona" variant="secondary">
-                <span>Ver c&oacute;mo funciona</span>
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </ButtonLink>
-            </Reveal>
-            <Reveal delay={0.14} className="mt-14 grid gap-4 md:grid-cols-3">
-              {[
-                ["Arquitectura", "Estructuramos el conocimiento para que se pueda operar."],
-                ["Alineaci\u00f3n", "Conectamos herramientas, procesos y personas bajo una misma l\u00f3gica."],
-                ["Escala", "Dise\u00f1amos sistemas que sostienen crecimiento real."],
-              ].map(([title, copy]) => (
-                <div
-                  key={title}
-                  className="rounded-[1.6rem] border border-white/[0.08] bg-white/[0.025] p-5"
-                >
-                  <p className="font-mono text-[11px] uppercase tracking-[0.26em] text-white/[0.38]">
-                    {title}
-                  </p>
-                  <p className="mt-4 text-base leading-7 text-white/[0.72]">{copy}</p>
-                </div>
-              ))}
-            </Reveal>
-          </div>
-
-          <Reveal delay={0.08}>
-            <HeroArchitecture />
-          </Reveal>
+          ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function SystemDiagram() {
+  return (
+    <div className="relative">
+      {/* Top label */}
+      <div className="mb-6 flex items-center justify-between font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--ink-faint)]">
+        <span>Diagrama operativo · 01</span>
+        <span className="hidden sm:inline">f(x) = sistema(producto, ia, aprendizaje)</span>
+      </div>
+
+      <div className="relative grid gap-px overflow-hidden border border-[var(--rule)] bg-[var(--rule)] md:grid-cols-3">
+        {[
+          {
+            glyph: "Σ",
+            title: "Estructura",
+            sub: "Sumamos lo disperso.",
+            note: "01 · SaaS",
+          },
+          {
+            glyph: "∂",
+            title: "Inteligencia",
+            sub: "Derivamos lo repetible.",
+            note: "02 · IA aplicada",
+          },
+          {
+            glyph: "φ",
+            title: "Aprendizaje",
+            sub: "Compone lo durable.",
+            note: "03 · Contenido",
+          },
+        ].map((cell) => (
+          <div
+            key={cell.title}
+            className="group relative flex aspect-[4/5] flex-col justify-between overflow-hidden bg-[var(--paper-soft)] p-7 md:aspect-auto md:min-h-[22rem] md:p-9"
+          >
+            <span className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--ink-faint)]">
+              {cell.note}
+            </span>
+
+            <div className="my-auto flex flex-col items-start">
+              <span
+                aria-hidden
+                className="font-display italic text-[clamp(7rem,16vw,12rem)] leading-[0.85] tracking-[-0.04em] text-[var(--ink)] transition-transform duration-700 group-hover:-translate-y-1"
+              >
+                {cell.glyph}
+              </span>
+            </div>
+
+            <div className="flex items-end justify-between gap-3">
+              <div>
+                <p className="font-display text-[1.5rem] leading-tight tracking-[-0.012em] text-[var(--ink)]">
+                  {cell.title}
+                </p>
+                <p className="mt-1 text-[0.92rem] text-[var(--ink-muted)]">{cell.sub}</p>
+              </div>
+              <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
+                ↗
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

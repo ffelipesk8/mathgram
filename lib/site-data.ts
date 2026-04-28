@@ -1,22 +1,30 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Blocks,
-  BrainCircuit,
-  ChartNoAxesCombined,
-  Network,
-  Orbit,
-  Sparkles,
-} from "lucide-react";
-
 export type NavItem = {
   href: string;
   label: string;
 };
 
 export type ServiceItem = {
+  index: string;
   title: string;
   body: string;
-  icon: LucideIcon;
+  glyph: string;
+};
+
+export type MethodStep = {
+  index: string;
+  title: string;
+  body: string;
+};
+
+export type Pillar = {
+  title: string;
+  body: string;
+};
+
+export const brand = {
+  name: "Mathgram",
+  tagline: "De conocimiento a sistemas",
+  email: "hola@mathgram.com",
 };
 
 export const navItems: NavItem[] = [
@@ -26,78 +34,163 @@ export const navItems: NavItem[] = [
   { href: "#contacto", label: "Contacto" },
 ];
 
-export const services: ServiceItem[] = [
-  {
-    title: "Software as a Service",
-    body: "Plataformas diseñadas para ordenar, operacionalizar y escalar el conocimiento dentro de organizaciones que ya están creciendo.",
-    icon: Blocks,
-  },
-  {
-    title: "Inteligencia Artificial",
-    body: "Agentes y flujos de IA que acompañan procesos reales, automatizan tareas clave y amplifican la capacidad de cada equipo.",
-    icon: BrainCircuit,
-  },
-  {
-    title: "Contenido educativo",
-    body: "Experiencias de aprendizaje claras, aplicables y profundamente alineadas con el contexto operativo del negocio.",
-    icon: Sparkles,
-  },
-];
-
-export const valuePoints = [
-  "Organizamos el conocimiento dentro de tu empresa",
-  "Conectamos tecnología, contenido y personas",
-  "Aplicamos inteligencia artificial de forma útil",
-  "Convertimos aprendizaje en resultados",
-];
-
-export const audienceItems = [
-  "Organizaciones en crecimiento",
-  "Equipos en expansión",
-  "Empresas que invierten en tecnología sin retorno claro",
-  "Compañías que necesitan escalar conocimiento",
-];
-
-export const transformation = {
-  before: [
-    "Información desconectada",
-    "Procesos manuales",
-    "Bajo engagement",
-    "Poca adopción tecnológica",
-  ],
-  after: [
-    "Conocimiento estructurado",
-    "Sistemas conectados",
-    "Procesos optimizados",
-    "Aprendizaje escalable",
+export const heroCopy = {
+  eyebrow: "Mathgram — 01",
+  titleLines: ["Hacemos legible", "lo que tu empresa", "ya sabe."],
+  titleItalicIndex: 1,
+  lead:
+    "Mathgram es la capa que articula SaaS, inteligencia artificial y contenido educativo en un solo sistema operable. No sumamos herramientas: estructuramos lo que ya existe para que finalmente escale.",
+  primaryCta: { label: "Agendar demo", href: "#contacto" },
+  secondaryCta: { label: "Ver cómo funciona", href: "#metodo" },
+  metaItems: [
+    { num: "01", label: "Estructura" },
+    { num: "02", label: "Inteligencia" },
+    { num: "03", label: "Aprendizaje" },
   ],
 };
 
-export const pillars = [
+export const manifestoCopy = {
+  chapter: "Tesis",
+  number: "I",
+  title: [
+    "El problema de las empresas",
+    "no es lo que les falta.",
+    "Es lo que no logran",
+    "articular.",
+  ],
+  paragraphs: [
+    "Las organizaciones crecen llenas de talento, datos y herramientas. Lo que rara vez tienen es una arquitectura que convierta esa abundancia en decisiones repetibles.",
+    "Sumar otro software no resuelve un sistema desconectado. Comprar más cursos no garantiza adopción. Agregar otra IA no produce coherencia.",
+    "Mathgram opera en la capa que une todo eso: la lógica común que vuelve operable el conocimiento que ya existe — antes de invertir en una herramienta más.",
+  ],
+  pullquote: "Más no es mejor. Coherente sí lo es.",
+};
+
+export const services: ServiceItem[] = [
   {
-    title: "Mapear",
-    body: "Le damos forma al conocimiento disperso para hacerlo visible, utilizable y transferible.",
-    icon: Orbit,
+    index: "01",
+    title: "Software como sistema",
+    body:
+      "Plataformas que ordenan el conocimiento operativo y lo vuelven utilizable día a día. No otro dashboard: el sistema que tu equipo ya estaba buscando.",
+    glyph: "∑",
   },
   {
-    title: "Conectar",
-    body: "Integramos personas, flujos y tecnología para que cada pieza tenga sentido dentro del sistema.",
-    icon: Network,
+    index: "02",
+    title: "Inteligencia artificial aplicada",
+    body:
+      "Agentes y flujos diseñados sobre tus procesos reales. La IA deja de ser una demo aislada y se convierte en capacidad instalada dentro del equipo.",
+    glyph: "∂",
   },
   {
-    title: "Escalar",
-    body: "Diseñamos activos y procesos que sostienen el crecimiento sin multiplicar la complejidad.",
-    icon: ChartNoAxesCombined,
+    index: "03",
+    title: "Contenido educativo",
+    body:
+      "Aprendizaje construido sobre tu operación, no extraído de plantillas. La diferencia entre saber algo y poder ejecutarlo bajo presión.",
+    glyph: "φ",
   },
 ];
 
-export const manifestoParagraphs = [
-  "El problema no es la falta de conocimiento. Nunca lo ha sido.",
-  "Las empresas están llenas de experiencia, talento, procesos y herramientas. Pero ese potencial rara vez se convierte en resultados reales porque el conocimiento no está estructurado, no está conectado y no está diseñado para escalar.",
-  "Durante años, la respuesta ha sido sumar más software, más contenido y más tecnología. Pero más no es mejor cuando nada funciona en conjunto.",
-  "Mathgram nace desde una idea clara: el verdadero valor no está en agregar más piezas. Está en entender cómo funcionan juntas.",
-  "Combinamos Software as a Service, inteligencia artificial y creación de contenido educativo para transformar el conocimiento en sistemas que realmente funcionan.",
-  "No venimos de la teoría. Venimos de la ejecución. Más de 15 años construyendo empresas nos enseñaron que el problema no son las herramientas, sino cómo se usan y cómo se conectan.",
-  "No creamos soluciones aisladas. Construimos sistemas donde el conocimiento fluye, la tecnología tiene propósito y el aprendizaje se convierte en acción.",
-  "No agregamos complejidad. Creamos estructura. Porque las empresas no necesitan empezar de cero: necesitan activar lo que ya tienen.",
+export const methodSteps: MethodStep[] = [
+  {
+    index: "01",
+    title: "Mapear",
+    body:
+      "Hacemos visible el conocimiento que circula en la organización: dónde vive, dónde se rompe y qué falta para cerrarlo.",
+  },
+  {
+    index: "02",
+    title: "Conectar",
+    body:
+      "Articulamos personas, datos y herramientas bajo una misma lógica operativa. Una sola gramática, no cuatro.",
+  },
+  {
+    index: "03",
+    title: "Activar",
+    body:
+      "Implementamos producto, IA y contenido como un solo sistema vivo. No tres iniciativas paralelas que compiten por atención.",
+  },
+  {
+    index: "04",
+    title: "Escalar",
+    body:
+      "El crecimiento deja de depender de heroicidades individuales. La capacidad queda instalada en la organización.",
+  },
 ];
+
+export const audienceItems = [
+  "Operaciones que escalaron más rápido que sus procesos.",
+  "Equipos que aprenden constantemente, pero no consolidan.",
+  "Inversión en tecnología sin retorno claro.",
+  "Negocios que ya no caben en su intuición fundadora.",
+];
+
+export const teamCopy = {
+  chapter: "Equipo",
+  number: "IV",
+  title: ["Cuatro trayectorias,", "un mismo criterio."],
+  body:
+    "Mathgram fue fundado por cuatro perfiles que vienen de construir, no de teorizar. Matemáticas, empresa, tecnología y emprendimiento — más de quince años traduciendo complejidad en estructuras claras.",
+  pillars: [
+    {
+      title: "Ejecución antes que método",
+      body: "El criterio nace de haber operado, no de haber observado.",
+    },
+    {
+      title: "Pensamiento estructural",
+      body: "Traducimos sistemas complejos en marcos navegables.",
+    },
+    {
+      title: "Diseño con criterio",
+      body: "No agregamos: editamos. Sustraemos lo que no aporta.",
+    },
+    {
+      title: "Sistemas, no piezas",
+      body: "Cada decisión cuida cómo encaja con el resto.",
+    },
+  ] satisfies Pillar[],
+};
+
+export const finalCtaCopy = {
+  chapter: "Contacto",
+  number: "V",
+  title: ["Es momento de operar", "lo que tu empresa", "ya sabe."],
+  body:
+    "Agenda una conversación de treinta minutos. Salimos con un mapa de tu sistema, no con una propuesta enlatada.",
+  primary: { label: "Agendar demo", href: "mailto:hola@mathgram.com?subject=Agendar%20demo%20Mathgram" },
+  secondary: { label: "Hablar con el equipo", href: "mailto:hola@mathgram.com?subject=Hablar%20con%20el%20equipo%20Mathgram" },
+};
+
+export const audienceCopy = {
+  chapter: "Para quién",
+  number: "III",
+  title: ["Construido para empresas", "que ya sintieron el costo", "del desorden."],
+  lead:
+    "No trabajamos con quien busca otra herramienta. Trabajamos con quien ya entendió que lo que falta es coherencia.",
+};
+
+export const servicesCopy = {
+  chapter: "Servicios",
+  number: "II",
+  title: ["Tres capacidades.", "Un mismo sistema."],
+  lead:
+    "Producto, IA y aprendizaje no se diseñan como frentes separados. Se refuerzan entre sí o no funcionan.",
+};
+
+export const methodCopy = {
+  chapter: "Método",
+  number: "II ·",
+  title: ["Cómo se opera", "un sistema de conocimiento."],
+  lead:
+    "Cuatro movimientos. Sin saltos, sin frameworks prestados. Lo mínimo necesario para que un equipo deje de improvisar.",
+};
+
+export const visionCopy = {
+  chapter: "Visión",
+  number: "—",
+  title: ["Las empresas no necesitan", "más herramientas.", "Necesitan", "mejores sistemas."],
+  paragraphs: [
+    "Más software no garantiza adopción. Más contenido no produce aprendizaje. Más tecnología no asegura impacto.",
+    "El valor real aparece cuando existe una lógica compartida entre lo que la empresa sabe, lo que hace y la forma en que crece.",
+  ],
+  pullquote: "Nuestro trabajo es volver ese conocimiento operable.",
+};

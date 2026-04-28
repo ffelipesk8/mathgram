@@ -1,125 +1,273 @@
 @import "tailwindcss";
 
 :root {
-  --font-sans: "Manrope", sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
-  --color-bg: #0b1020;
-  --color-bg-elevated: rgba(15, 21, 36, 0.9);
-  --color-panel: rgba(18, 24, 42, 0.82);
-  --color-panel-strong: rgba(24, 31, 54, 0.96);
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-strong: rgba(165, 200, 255, 0.2);
-  --color-text: #f4f1ea;
-  --color-text-muted: rgba(232, 227, 219, 0.66);
-  --color-accent: #9ec5ff;
-  --color-accent-soft: rgba(158, 197, 255, 0.12);
-  --color-accent-warm: #d7b37f;
-  --shadow-soft: 0 30px 120px rgba(5, 8, 18, 0.42);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Paper palette — warm bone, editorial */
+  --paper: #f4f0e6;
+  --paper-soft: #fbf8f1;
+  --paper-deep: #ece6d6;
+
+  /* Ink — warm near-black */
+  --ink: #14110d;
+  --ink-strong: #050402;
+  --ink-muted: rgba(20, 17, 13, 0.62);
+  --ink-faint: rgba(20, 17, 13, 0.42);
+  --ink-whisper: rgba(20, 17, 13, 0.24);
+
+  /* Rules / borders */
+  --rule: rgba(20, 17, 13, 0.10);
+  --rule-strong: rgba(20, 17, 13, 0.18);
+
+  /* Accents — used sparingly */
+  --accent: #14110d;            /* primary accent IS the ink */
+  --accent-warm: #b08642;       /* refined ochre, only for kicker dots & highlights */
+  --accent-warm-soft: rgba(176, 134, 66, 0.14);
 }
 
 * {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
-  background:
-    radial-gradient(circle at 12% 12%, rgba(158, 197, 255, 0.13), transparent 26%),
-    radial-gradient(circle at 88% 8%, rgba(215, 179, 127, 0.1), transparent 22%),
-    radial-gradient(circle at 50% 120%, rgba(80, 112, 169, 0.12), transparent 30%),
-    linear-gradient(180deg, #0d1223 0%, #0b1020 46%, #090d19 100%);
+  background: var(--paper);
+  scroll-behavior: smooth;
 }
 
 body {
   min-height: 100dvh;
   font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  color: var(--ink);
   text-rendering: optimizeLegibility;
 }
 
 a,
 button {
   transition:
-    color 180ms ease,
-    background-color 180ms ease,
-    border-color 180ms ease,
-    opacity 180ms ease,
-    transform 180ms ease;
+    color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 ::selection {
-  background: rgba(142, 227, 255, 0.28);
-  color: white;
+  background: var(--ink);
+  color: var(--paper);
 }
 
 @theme inline {
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
   --font-mono: var(--font-mono);
+
+  --color-paper: var(--paper);
+  --color-paper-soft: var(--paper-soft);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-ink-strong: var(--ink-strong);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-ink-whisper: var(--ink-whisper);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent-warm: var(--accent-warm);
 }
 
+/* Layout primitives */
 @utility container-shell {
   margin-inline: auto;
-  width: min(100% - 2rem, 1200px);
+  width: min(100% - 2.5rem, 1240px);
+}
+
+@utility container-narrow {
+  margin-inline: auto;
+  width: min(100% - 2.5rem, 920px);
 }
 
 @utility section-space {
-  padding-block: clamp(4.5rem, 8vw, 8rem);
+  padding-block: clamp(5rem, 10vw, 10rem);
 }
 
-@utility section-title {
-  font-size: clamp(2rem, 4vw, 4rem);
-  line-height: 0.98;
-  letter-spacing: -0.06em;
-  font-family: var(--font-display);
-  font-weight: 600;
+/* Typography */
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
-@utility section-copy {
-  max-width: 42rem;
-  font-size: clamp(1rem, 1.3vw, 1.125rem);
-  line-height: 1.8;
-  color: var(--color-text-muted);
-}
-
-@utility glass-panel {
-  border: 1px solid var(--color-border);
-  background:
-    linear-gradient(180deg, rgba(20, 27, 47, 0.92), rgba(12, 17, 31, 0.88));
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(20px);
-}
-
-@utility display-kicker {
-  font-family: var(--font-display);
-  letter-spacing: -0.05em;
-}
-
-.mesh-lines {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
-  background-size: 72px 72px;
-  opacity: 0.18;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.92), transparent 85%);
-}
-
-.noise-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.14;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 90px 90px;
-  mask-image: radial-gradient(circle at center, black, transparent 80%);
-}
-
-.hero-orbit {
-  position: absolute;
+@utility eyebrow-dot {
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--accent-warm);
+}
+
+@utility chapter-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+}
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.4rem, 8vw, 8.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+@utility display-lg {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 5.4vw, 5.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+@utility display-md {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.6vw, 3.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+}
+
+@utility display-sm {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1.16;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+
+@utility lead {
+  font-size: clamp(1.05rem, 1.4vw, 1.22rem);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+
+@utility body-prose {
+  font-size: 1.025rem;
+  line-height: 1.72;
+  color: var(--ink-muted);
+}
+
+/* Decorative grid (mathematical) */
+.paper-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 88px 88px;
+  background-position: -1px -1px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 0%, transparent 90%);
+  opacity: 0.55;
+}
+
+.paper-grid--dense {
+  background-size: 44px 44px;
+}
+
+.hairline {
+  height: 1px;
+  background: var(--rule);
+  width: 100%;
+}
+
+.hairline-strong {
+  height: 1px;
+  background: var(--rule-strong);
+  width: 100%;
+}
+
+.italic-serif {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Buttons */
+@utility btn-ink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.85rem;
+  padding-inline: 1.35rem;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  border-radius: 9999px;
+}
+
+@utility btn-ink-hover {
+  background: var(--ink-strong);
+  transform: translateY(-1px);
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.85rem;
+  padding-inline: 1.35rem;
+  border: 1px solid var(--rule-strong);
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: transparent;
+  border-radius: 9999px;
+}
+
+@utility btn-ghost-hover {
+  border-color: var(--ink);
+  background: var(--paper-soft);
+}
+
+/* Marquee divider */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 5rem;
+  animation: marquee 38s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }

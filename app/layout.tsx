@@ -1,30 +1,35 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Manrope, Space_Grotesk } from "next/font/google";
+import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
   variable: "--font-display",
+  display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-mono",
+  display: "swap",
 });
 
-const title = "Mathgram | De conocimiento a sistemas";
+const title = "Mathgram — De conocimiento a sistemas";
 const description =
-  "Mathgram combina SaaS, inteligencia artificial y contenido educativo para transformar el conocimiento empresarial en sistemas que sí generan resultados.";
+  "Mathgram es la capa de coherencia entre SaaS, inteligencia artificial y contenido educativo. Estructuramos lo que tu empresa ya sabe para que escale sin más herramientas.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mathgram.vercel.app"),
+  metadataBase: new URL("https://mathgram-rho.vercel.app"),
   title,
   description,
   keywords: [
@@ -32,13 +37,13 @@ export const metadata: Metadata = {
     "SaaS",
     "inteligencia artificial",
     "contenido educativo",
-    "sistemas empresariales",
-    "transformación del conocimiento",
+    "sistemas operativos de conocimiento",
+    "transformación organizacional",
   ],
   openGraph: {
     title,
     description,
-    url: "https://mathgram.vercel.app",
+    url: "https://mathgram-rho.vercel.app",
     siteName: "Mathgram",
     locale: "es_CO",
     type: "website",
@@ -59,9 +64,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="es">
       <body
-        className={`${manrope.variable} ${spaceGrotesk.variable} ${plexMono.variable} bg-[var(--color-bg)] text-[var(--color-text)] antialiased`}
+        className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
       >
         {children}
       </body>

@@ -2,15 +2,10 @@ import { HeroSection } from "@/components/sections/hero-section";
 import {
   AudienceSection,
   FinalCtaSection,
-  FoundersSection,
   ManifestoSection,
-  OriginSection,
-  PositioningSection,
-  ProblemSection,
+  MethodSection,
   ServicesSection,
-  StatementSection,
-  TransformationSection,
-  ValueSection,
+  TeamSection,
   VisionSection,
 } from "@/components/sections/story-sections";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -22,17 +17,12 @@ export default function HomePage() {
       <SiteNavbar />
       <main>
         <HeroSection />
-        <ProblemSection />
-        <OriginSection />
-        <VisionSection />
-        <ServicesSection />
-        <TransformationSection />
-        <PositioningSection />
-        <FoundersSection />
-        <ValueSection />
-        <AudienceSection />
-        <StatementSection />
         <ManifestoSection />
+        <ServicesSection />
+        <MethodSection />
+        <VisionSection />
+        <AudienceSection />
+        <TeamSection />
         <FinalCtaSection />
       </main>
       <SiteFooter />
