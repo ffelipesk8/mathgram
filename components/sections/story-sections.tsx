@@ -24,13 +24,7 @@ export function ManifestoSection() {
       <div className="container-shell grid gap-14 lg:grid-cols-[0.7fr_1.3fr]">
         <Reveal>
           <div className="lg:sticky lg:top-32">
-            <SectionLabel number={manifestoCopy.number}>{manifestoCopy.chapter}</SectionLabel>
-            <p className="mt-10 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[var(--ink-faint)]">
-              Una declaración
-            </p>
-            <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[var(--ink-faint)]">
-              · 03 párrafos
-            </p>
+            <SectionLabel>{manifestoCopy.chapter}</SectionLabel>
           </div>
         </Reveal>
 
@@ -341,27 +335,6 @@ export function FinalCtaSection() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.22}>
-          <div className="mt-24 overflow-hidden border-y border-[var(--rule)] py-5">
-            <div className="marquee-track font-mono text-[0.72rem] uppercase tracking-[0.28em] text-[var(--ink-faint)]">
-              {Array.from({ length: 2 }).map((_, group) => (
-                <div key={group} className="flex shrink-0 items-center gap-20">
-                  {[
-                    "De conocimiento a sistemas",
-                    "SaaS · IA · Contenido educativo",
-                    "Estructura, no agregados",
-                    "Coherencia antes que herramientas",
-                  ].map((item) => (
-                    <span key={`${group}-${item}`} className="flex items-center gap-20 whitespace-nowrap">
-                      <span>{item}</span>
-                      <span className="block h-1 w-1 rounded-full bg-[var(--accent-warm)]" />
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
