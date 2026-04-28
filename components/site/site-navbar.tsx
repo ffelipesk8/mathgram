@@ -3,15 +3,15 @@ import { navItems } from "@/lib/site-data";
 
 export function SiteNavbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[rgba(5,8,22,0.7)] backdrop-blur-xl">
-      <div className="container-shell flex h-[4.5rem] items-center justify-between gap-6">
+    <header className="sticky top-0 z-50 border-b border-white/[0.05] bg-[rgba(11,16,32,0.72)] backdrop-blur-xl">
+      <div className="container-shell flex h-[4.75rem] items-center justify-between gap-6">
         <a href="#inicio" className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-sm font-semibold tracking-[0.24em] text-white">
+          <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.04] text-sm font-semibold tracking-[0.18em] text-white">
             MG
           </span>
           <div className="hidden sm:block">
             <p className="text-sm font-semibold text-white">Mathgram</p>
-            <p className="text-xs text-white/50">De conocimiento a sistemas</p>
+            <p className="text-xs text-white/[0.44]">De conocimiento a sistemas</p>
           </div>
         </a>
         <nav className="hidden items-center gap-7 md:flex">
@@ -19,7 +19,7 @@ export function SiteNavbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm text-white/[0.66] hover:text-white"
+              className="text-sm text-white/[0.62] hover:text-white"
             >
               {item.label}
             </a>

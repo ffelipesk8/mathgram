@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Sora } from "next/font/google";
+import { IBM_Plex_Mono, Manrope, Space_Grotesk } from "next/font/google";
 
 import "./globals.css";
 
-const sora = Sora({
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
 });
 
 const plexMono = IBM_Plex_Mono({
@@ -56,7 +61,7 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <body
-        className={`${sora.variable} ${plexMono.variable} bg-[var(--color-bg)] text-[var(--color-text)] antialiased`}
+        className={`${manrope.variable} ${spaceGrotesk.variable} ${plexMono.variable} bg-[var(--color-bg)] text-[var(--color-text)] antialiased`}
       >
         {children}
       </body>
