@@ -34,9 +34,8 @@ export function HeroSection() {
         >
           <span className="flex items-center gap-3">
             <span className="block h-1.5 w-1.5 rounded-full bg-[var(--accent-warm)]" />
-            {heroCopy.eyebrow}
+            {brand.name}
           </span>
-          <span className="hidden md:block">Edición MMXXVI</span>
           <span>{brand.tagline}</span>
         </motion.div>
 

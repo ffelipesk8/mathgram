@@ -349,9 +349,8 @@ export function FinalCtaSection() {
                   {[
                     "De conocimiento a sistemas",
                     "SaaS · IA · Contenido educativo",
-                    "Diseñado con criterio",
                     "Estructura, no agregados",
-                    "Mathgram MMXXVI",
+                    "Coherencia antes que herramientas",
                   ].map((item) => (
                     <span key={`${group}-${item}`} className="flex items-center gap-20 whitespace-nowrap">
                       <span>{item}</span>

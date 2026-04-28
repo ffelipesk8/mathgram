@@ -76,11 +76,14 @@ export function SiteFooter() {
 
         <div className="mt-8 flex flex-col-reverse gap-3 border-t border-[var(--rule)] pt-6 text-[0.78rem] text-[var(--ink-faint)] md:flex-row md:items-center md:justify-between">
           <p className="font-mono uppercase tracking-[0.18em]">
-            © {year} {brand.name}. Todos los derechos reservados.
+            © {year} {brand.name}
           </p>
-          <p className="font-mono uppercase tracking-[0.18em]">
-            Diseñado con criterio, no por inercia.
-          </p>
+          <a
+            href={`mailto:${brand.email}`}
+            className="font-mono uppercase tracking-[0.18em] transition hover:text-[var(--ink)]"
+          >
+            {brand.email}
+          </a>
         </div>
       </div>
     </footer>

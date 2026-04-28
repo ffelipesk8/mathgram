@@ -54,93 +54,42 @@ export function SiteNavbar() {
   }, [open]);
 
   const navBgClass = scrolled
-    ? "bg-[rgb(244_240_230_/_0.82)] backdrop-blur-xl"
+    ? "bg-[rgb(244_240_230_/_0.86)] backdrop-blur-xl"
     : "bg-[var(--paper)]";
 
   return (
     <header className="sticky top-0 z-50">
-      {/* Edition masthead strip */}
-      <motion.div
-        initial={false}
-        animate={{ height: scrolled ? 0 : "auto", opacity: scrolled ? 0 : 1 }}
-        transition={{ duration: 0.45, ease }}
-        className="overflow-hidden bg-[var(--paper)]"
-      >
-        <div className="border-b border-[var(--rule)]">
-          <div className="container-shell flex h-9 items-center justify-between gap-6 font-mono text-[0.66rem] uppercase tracking-[0.22em] text-[var(--ink-faint)]">
-            <span className="flex items-center gap-3">
-              <span aria-hidden className="block h-1 w-1 rounded-full bg-[var(--accent-warm)]" />
-              <span>MMXXVI &middot; Ed. I</span>
-              <span className="hidden text-[var(--ink-whisper)] sm:inline">/</span>
-              <span className="hidden sm:inline">{brand.tagline}</span>
-            </span>
-            <span className="hidden items-center gap-3 md:flex">
-              <span>Estudio de sistemas</span>
-              <span className="text-[var(--ink-whisper)]">/</span>
-              <span>Bogot&aacute; &rarr; &infin;</span>
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="hidden md:inline">Disponibles para Q3</span>
-              <span aria-hidden className="relative flex h-1.5 w-1.5">
-                <span className="absolute inset-0 animate-ping rounded-full bg-[var(--accent-warm)] opacity-60" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--accent-warm)]" />
-              </span>
-            </span>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Main navbar */}
       <div
         className={
           "relative border-b border-[var(--rule)] transition-[background-color,backdrop-filter] duration-300 " +
           navBgClass
         }
       >
-        <div className="container-shell flex h-[4.6rem] items-center justify-between gap-8 md:h-[5.2rem]">
+        <div className="container-shell flex h-[4.4rem] items-center justify-between gap-8 md:h-[5rem]">
           {/* Logo lockup */}
-          <a href="#inicio" className="group flex items-end gap-2.5">
+          <a href="#inicio" className="group flex items-center gap-2.5">
             <span
               aria-hidden
-              className="font-display italic text-[clamp(2.2rem,3.4vw,2.8rem)] leading-[0.85] tracking-[-0.04em] text-[var(--ink)]"
+              className="font-display italic text-[clamp(2rem,3vw,2.4rem)] leading-none tracking-[-0.04em] text-[var(--ink)]"
             >
               M
             </span>
-            <span className="flex flex-col leading-none">
-              <span className="font-display text-[clamp(1.15rem,1.6vw,1.35rem)] tracking-[-0.018em] text-[var(--ink)]">
-                Mathgram
-              </span>
-              <span className="mt-1 font-mono text-[0.58rem] uppercase tracking-[0.24em] text-[var(--ink-faint)]">
-                Est. MMXXVI
-              </span>
+            <span className="font-display text-[clamp(1.15rem,1.55vw,1.3rem)] leading-none tracking-[-0.018em] text-[var(--ink)]">
+              Mathgram
             </span>
-            <span
-              aria-hidden
-              className="ml-1 mb-1 hidden h-1 w-1 rounded-full bg-[var(--accent-warm)] transition-transform duration-500 group-hover:scale-150 sm:block"
-            />
           </a>
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 md:flex">
-            {navItems.map((item, i) => {
+            {navItems.map((item) => {
               const id = item.href.replace("#", "");
               const isActive = activeId === id;
               return (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="group relative flex items-center gap-2 px-3 py-2 text-[0.88rem]"
+                  className="group relative px-3 py-2 text-[0.92rem]"
                 >
-                  <span
-                    className={
-                      "font-mono text-[0.62rem] tracking-[0.18em] transition " +
-                      (isActive
-                        ? "text-[var(--accent-warm)]"
-                        : "text-[var(--ink-whisper)] group-hover:text-[var(--ink-faint)]")
-                    }
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
                   <span
                     className={
                       "relative transition " +
@@ -210,7 +159,7 @@ export function SiteNavbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease }}
-            className="fixed inset-x-0 top-[calc(2.25rem+4.6rem)] z-40 h-[calc(100dvh-2.25rem-4.6rem)] overflow-y-auto bg-[var(--paper)] md:hidden"
+            className="fixed inset-x-0 top-[4.4rem] z-40 h-[calc(100dvh-4.4rem)] overflow-y-auto bg-[var(--paper)] md:hidden"
           >
             <div className="container-shell flex h-full flex-col justify-between py-10">
               <nav className="flex flex-col">
@@ -224,13 +173,8 @@ export function SiteNavbar() {
                     transition={{ duration: 0.4, ease, delay: i * 0.05 }}
                     className="group flex items-baseline justify-between border-b border-[var(--rule)] py-5"
                   >
-                    <span className="flex items-baseline gap-5">
-                      <span className="font-mono text-[0.7rem] tracking-[0.2em] text-[var(--ink-faint)]">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="font-display text-[2.4rem] leading-none tracking-[-0.02em] text-[var(--ink)]">
-                        {item.label}
-                      </span>
+                    <span className="font-display text-[2.4rem] leading-none tracking-[-0.02em] text-[var(--ink)]">
+                      {item.label}
                     </span>
                     <ArrowUpRight className="h-5 w-5 text-[var(--ink-faint)] transition group-hover:text-[var(--ink)]" />
                   </motion.a>
@@ -239,13 +183,9 @@ export function SiteNavbar() {
 
               <div className="mt-10 space-y-6">
                 <NavCta full />
-                <div className="flex items-center justify-between font-mono text-[0.66rem] uppercase tracking-[0.22em] text-[var(--ink-faint)]">
-                  <span>{brand.email}</span>
-                  <span className="flex items-center gap-2">
-                    Disponibles
-                    <span className="block h-1.5 w-1.5 rounded-full bg-[var(--accent-warm)]" />
-                  </span>
-                </div>
+                <p className="text-[0.92rem] text-[var(--ink-muted)]">
+                  {brand.email}
+                </p>
               </div>
             </div>
           </motion.div>
@@ -257,17 +197,12 @@ export function SiteNavbar() {
 
 function NavCta({ full = false }: { full?: boolean }) {
   const base =
-    "group relative inline-flex h-11 items-center gap-3 overflow-hidden rounded-full bg-[var(--ink)] pl-5 pr-1.5 text-[0.88rem] font-medium text-[var(--paper)] transition hover:bg-[var(--ink-strong)]";
+    "group relative inline-flex h-11 items-center gap-3 overflow-hidden rounded-full bg-[var(--ink)] pl-5 pr-1.5 text-[0.9rem] font-medium text-[var(--paper)] transition hover:bg-[var(--ink-strong)]";
   const layout = full ? "w-full justify-between" : "hidden sm:inline-flex";
 
   return (
     <a href="#contacto" className={base + " " + layout}>
-      <span className="flex items-center gap-2">
-        <span className="font-mono text-[0.58rem] uppercase tracking-[0.22em] opacity-55">
-          01
-        </span>
-        <span>Agendar demo</span>
-      </span>
+      <span>Agendar demo</span>
       <span
         aria-hidden
         className="grid h-8 w-8 place-items-center rounded-full bg-[var(--paper)] text-[var(--ink)] transition-transform duration-500 ease-out group-hover:rotate-45"
